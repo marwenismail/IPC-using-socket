@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 
     /* Create Master socket. */
 
-    /*SOCK_DGRAM for Datagram based communication*/
+    /*SOCK_STREAM for Datagram based communication*/
     connection_socket = socket(AF_UNIX, SOCK_STREAM, 0);
 
     if (connection_socket == -1) {
@@ -81,8 +81,7 @@ int main(int argc, char *argv[])
             memset(buffer, 0, BUFFER_SIZE);
 
             /* Wait for next data packet. */
-            /*Server is blocked here. Waiting for the data to arrive from client
-             * 'read' is a blocking system call*/
+            /*Server is blocked here. Waiting for the data to arrive from client*/
             printf("Waiting for data from the client\n");
             ret = read(data_socket, buffer, BUFFER_SIZE);
 
@@ -116,8 +115,7 @@ int main(int argc, char *argv[])
     close(connection_socket);
     printf("connection closed..\n");
 
-    /* Server should release resources before getting terminated.
-     * Unlink the socket. */
+    /* Unlink the socket. */
 
     unlink(SOCKET_NAME);
     exit(EXIT_SUCCESS);

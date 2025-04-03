@@ -1,6 +1,7 @@
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 #include <string.h>
 #include <sys/socket.h>
 #include <sys/un.h>
@@ -12,7 +13,7 @@
 int main(int argc, char *argv[])
 {
     struct sockaddr_un addr;
-    int i;
+    uint8_t i;
     int ret;
     int data_socket;
     char buffer[BUFFER_SIZE];
@@ -44,7 +45,7 @@ int main(int argc, char *argv[])
     /* Send arguments. */
     do{
         printf("Enter number to send to server :\n");
-        scanf("%d", &i);
+        scanf("%hhd", &i);
         ret = write(data_socket, &i, sizeof(int));
         if (ret == -1) {
             perror("write");

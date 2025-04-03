@@ -13,7 +13,7 @@ This project consists of a **server process** and a **client process** that comm
 
 ## Requirements
 - A Linux-based system
-- GCC compiler for C programs (if implemented in C) or Python (if implemented in Python)
+- GCC compiler for C programs
 - Basic understanding of socket programming
 
 ## How to Run

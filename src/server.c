@@ -90,7 +90,7 @@ int main(int argc, char *argv[])
                 exit(EXIT_FAILURE);
             }
 
-            /* Add received summand. */
+            /* Add received  */
             memcpy(&data, buffer, sizeof(int));
             if(data == 0) break;
             result += data;

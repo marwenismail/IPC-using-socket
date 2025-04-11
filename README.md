@@ -24,12 +24,12 @@ This project consists of a **server process** and a **client process** that comm
 
 2. **Run the server:**  
    ```bash
-   ./server
+   ./bin/server 
    ```
 
 3. **Run the client:**  
    ```bash
-   ./client
+   ./bin/client
    ```
 
 ## Expected Behavior

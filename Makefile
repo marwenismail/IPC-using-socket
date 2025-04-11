@@ -10,7 +10,10 @@ CLIENT_OBJ = $(CLIENT_SRC:.c=.o)
 SERVER_BIN = bin/server
 CLIENT_BIN = bin/client
 
-all: $(SERVER_BIN) $(CLIENT_BIN)
+BIN_DIR = bin
+
+all:  $(SERVER_BIN) $(CLIENT_BIN)
+
 
 $(SERVER_BIN): $(SERVER_OBJ)
 	$(CC) $(CFLAGS) -o $@ $^
@@ -23,7 +26,14 @@ $(CLIENT_BIN): $(CLIENT_OBJ)
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
+run: all
+	@echo "Starting server in background..."
+	@$(BIN_DIR)/server &
+	@sleep 1
+	@gnome-terminal -- bash -c "$(BIN_DIR)/client; exec bash"
+	@echo "Client started in new terminal."
+
 clean:
 	rm -f $(SERVER_OBJ) $(CLIENT_OBJ) $(SERVER_BIN) $(CLIENT_BIN)
 
-.PHONY: all clean
+.PHONY: all clean run
